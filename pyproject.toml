@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-stack"
+version = "0.1.0"
+description = "A three-layer robot stack with touch, running on a real SO-101 arm"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+# Capped at the next major release, which is where these have broken callers before. The versions the
+# real-arm result was run with are listed in SO101.md.
+dependencies = ["numpy<3", "torch<3", "mujoco<4", "pillow<13"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "anthropic>=0.86", "transformers>=4.40"]
+# The real-arm code needs Python 3.12 or later and was written against LeRobot 0.7.
+so101 = ["lerobot[feetech,dataset]>=0.7,<0.8; python_version >= '3.12'", "transformers>=4.40", "anthropic>=0.86"]
+
+[tool.setuptools]
+packages = ["so101", "robot_stack_earlier", "robot_stack_earlier.armstack", "robot_stack_earlier.robostack"]
+
+[tool.ruff]
+line-length = 160
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+# Long comment lines, two short statements on a line and small named lambdas are this code's style.
+ignore = ["E501", "E702", "E731"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
