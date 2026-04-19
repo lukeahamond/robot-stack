@@ -1,0 +1,6 @@
+Check,Trials,Passed
+Grip kept between commands,10,8
+Drop alarm at the handover,10,9
+max_lead,5,4
+Out-of-range start,5,3
+Rerun of demonstrated positions,20,15

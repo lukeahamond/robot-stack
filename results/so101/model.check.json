@@ -1,0 +1,9 @@
+{
+ "joint_error": 1.23,
+ "joint_error_no_future": 1.31,
+ "gripper_error": 0.45,
+ "touch_correct": 0.962,
+ "finished_correct": 0.981,
+ "future_match": 0.874,
+ "future_match_if_nothing_moved": 0.812
+}
